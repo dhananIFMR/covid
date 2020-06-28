@@ -1,0 +1,63 @@
+import copy
+
+import dash_core_components as dcc
+
+
+def make_question_pie(responses, question):
+    business_recovery_data = responses[question]
+    first_key = list(responses[question].keys())[0]
+    p_key = None
+    for k in responses[question][first_key].keys():
+        if k.startswith("Percentage"):
+            p_key = k
+            break
+    business_recovery_data = {
+        k: float(v[p_key].replace("%", "")) for k, v in business_recovery_data.items()
+    }
+    business_recovery_data_keys, business_recovery_data_values = zip(
+        *business_recovery_data.items()
+    )
+    data = [
+        {
+            "values": business_recovery_data_values,
+            "labels": business_recovery_data_keys,
+            "type": "pie",
+        }
+    ]
+    business_recovery_data_plot = dcc.Graph(
+        id=question,
+        className ="graphbox",
+        figure={"data": data, "layout": {"height": "200px", "title": question}},
+    )
+    return business_recovery_data_plot
+
+
+def make_household_multi(responses, question):
+    household_data = copy.deepcopy(responses[question])
+    for key in household_data.keys():
+        if household_data[key].get("Freq"):
+            household_data[key].pop("Freq")
+        if household_data[key].get("Percentage"):
+            household_data[key].pop("Percentage")
+        if household_data[key].get("Percentage of case"):
+            household_data[key].pop("Percentage of case")
+        s = sum(household_data[key].values())
+        s = s if s != 0 else 1
+        household_data[key] = {k: v / s * 100. for k, v in household_data[key].items()}
+    data_list = []
+    for key in household_data.keys():
+        columns, values = zip(*household_data[key].items())
+        data_list.append({"x": columns, "y": values, "type": "bar", "name": key})
+    fig = dcc.Graph(
+        id="household",
+        className ="graphbox",
+        figure={
+            "data": data_list,
+            "layout": {
+                "title": {"text": question},
+                "barmode": "group",
+                "yaxis": {"title": "% of Responses"},
+            },
+        },
+    )
+    return fig
