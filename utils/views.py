@@ -16,6 +16,7 @@ def make_jumbotron(link_text, link_href):
                     className="head-box container", ),
                         html.Div( children=[
                            html.H2("Impact of COVID-19 on Microenterprises", className="app-header"),
+                            html.Div( children=[
                            html.H3("Introduction", className ="sub-head"),
                            html.P("""
                     The LEAD/GAME COVID-19 survey is being conducted with an aim to capture the status of micro-enterprises in India during COVID-19, through dynamic multidimensional survey of various microbusiness over a period of 6 months. This will allow us to get insights at a granular level and to take a quick pulse overtime (short-term/long-term perception).""",
@@ -24,10 +25,21 @@ def make_jumbotron(link_text, link_href):
                 html.P("""
                 Through the survey, we aim to assess the impact of damage to business livelihood, employment, household income of nano and microbusiness and understand impact on key aspects of business operations. Additionally, the survey shall also provide reliable estimates on business and employment outcomes and gauge confidence levels of small businesses in the economy periodically.""",
                 className="lead"),
-                   html.H3("Survey Methodology", className ="sub-headrgt"),
+                  
+                       ],
+                        className="desbox"
+                        ),
+                           
+                            html.Div( children=[
+ html.H3("Survey Methodology", className ="sub-headrgt"),
                   html.P("""
                     Our stratified, convenience sample was drawn to represent microbusinesses from various sub-industries in manufacturing, services and trade. The sample is derived from lists provided by partner organizations. The regions to be covered in the survey are: North India (Delhi, Haryana, Punjab, Uttar Pradesh), South India (Tamil Nadu), West India (Gujarat, Maharashtra, Rajasthan). The surveys were conducted telephonically in the area’s local language and each survey took 18-25 minutes to administer.""",
                 className="leadrgt"),
+
+                        ],
+                        className="desbox"
+                        ),
+
                         ],
                         className="head-text"
                         ),
