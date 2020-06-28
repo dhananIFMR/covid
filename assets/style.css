@@ -32,12 +32,36 @@ div#body {
 }
 
 .head-text p.lead {
-    width: 70%;
-    text-align: center;
-    margin: 0px auto 15px auto;
+    width: 85%;
+    text-align: left;
+    margin: 0% 7%;
     font-family: gotham;
     font-size: 15px;
 }
+.head-text p.leadrgt {
+    width: 85%;
+    text-align: right;
+    margin: 0% 7%;
+    font-family: gotham;
+    font-size: 15px;
+}
+.sub-head {
+    width: 85%;
+    text-align: left;
+    margin: 8px 7%;
+    font-family: gotham;
+    font-size: 19px;
+    font-weight: 700;
+}
+.sub-headrgt {
+    width: 85%;
+    text-align: right;
+    margin: 8px 7%;
+    font-family: gotham;
+    font-size: 19px;
+    font-weight: 700;
+}
+
 
 img.gamelogo {
     float: right;
