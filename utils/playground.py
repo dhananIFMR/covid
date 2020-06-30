@@ -2,6 +2,7 @@ import dash_core_components as dcc
 import dash_html_components as html
 import dash_bootstrap_components as dbc
 
+colors = ['#005DA6', '#FFC52F', '#BAE1FF', '#75C2FF', '#31A4FF', '#00467D', '#CBC53E']
 
 def make_playground_header(unique_states, unique_type_of_industry, unique_genders):
     return [
@@ -129,17 +130,19 @@ def make_charts_for_questions(
                     columns = list(freqs.index)
                     values = freqs.to_numpy()
                     data_list.append(
-                        {"x": columns, "y": values, "type": "bar", "name": un}
+                        {"x": columns, "y": values, "type": "bar", "name": un,  'marker': {"color": colors}}
                     )
                 fig = dcc.Graph(
-                    id=label,
+                    id=label,                   
                     figure={
                         "data": data_list,
                         "layout": {
                             "title": {"text": question},
                             "barmode": "group",
                             "yaxis": {"title": "Responses"},
+                         
                         },
+                        
                     },
                 )
                 children.append(dbc.Row(dbc.Col(children=[fig])))
@@ -148,7 +151,7 @@ def make_charts_for_questions(
                 columns = list(freqs.index)
                 values = freqs.to_numpy()
                 fig = dcc.Graph(
-                    id=label,
+                    id=label,                     
                     figure={
                         "data": [
                             {
@@ -156,6 +159,7 @@ def make_charts_for_questions(
                                 "y": values,
                                 "type": "bar",
                                 "name": "Responses",
+                                 'marker': {"color": colors}
                             }
                         ],
                         "layout": {"title": question, "yaxis": {"title": "Responses"}},
