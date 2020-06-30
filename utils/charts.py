@@ -22,11 +22,25 @@ def make_question_pie(responses, question):
             "values": business_recovery_data_values,
             "labels": business_recovery_data_keys,
             "type": "pie",
+            'marker': {
+              'colors': [
+                '#005DA6',
+'#FFC52F',
+'#BAE1FF',
+'#75C2FF',
+'#31A4FF',
+'#00467D',
+'#CBC53E',
+'#0199D6',
+'#6D6E71',
+
+              ]
+            },
         }
     ]
     business_recovery_data_plot = dcc.Graph(
         id=question,
-        className ="graphbox",
+        className="graphbox",
         figure={"data": data, "layout": {"height": "200px", "title": question}},
     )
     return business_recovery_data_plot
@@ -45,12 +59,21 @@ def make_household_multi(responses, question):
         s = s if s != 0 else 1
         household_data[key] = {k: v / s * 100. for k, v in household_data[key].items()}
     data_list = []
+    colors = ['#005DA6',
+'#FFC52F',
+'#BAE1FF',
+'#75C2FF',
+'#31A4FF',
+'#00467D',
+'#CBC53E',
+'#0199D6',
+'#6D6E71'] * 5
     for key in household_data.keys():
         columns, values = zip(*household_data[key].items())
-        data_list.append({"x": columns, "y": values, "type": "bar", "name": key})
+        data_list.append({"x": columns, "y": values, "type": "bar", "name": key, 'marker': {"color": colors}})
     fig = dcc.Graph(
         id="household",
-        className ="graphbox",
+        className="graphbox",
         figure={
             "data": data_list,
             "layout": {
