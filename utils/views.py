@@ -244,4 +244,4 @@ def playground(unique_states, unique_type_of_industry, unique_genders):
             style={"padding-left": "50px", "padding-right": "50px"},
         )
     ]
-    return [make_jumbotron("Back to Overview", "/")] + playground
+    return [make_jumbotron("Back to Overview", "/")] + 
