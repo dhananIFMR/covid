@@ -220,9 +220,10 @@ div#tabs-example .tab--selected {
 
 #table td {
     border-color: #0199D6!important;
-    border-bottom: 0px solid #f7eff7 !important;
-    border-left: 0px solid #0f0!important;
-    border-right: 2px solid #0199D6!Important;
+    border-bottom: 2px solid #0199D6 !important;
+    border-left: 2px solid #0199D6!important;
+    border-right: 2px solid #0199D6!important;
+    padding: 5px;
 }
 /*div#household.graphbox, div#Challenges in operation.graphbox {
     width: 70%;
@@ -295,4 +296,3 @@ h3 a {
         width: 1500px;
     }
     }
-    
