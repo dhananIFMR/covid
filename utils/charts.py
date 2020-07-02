@@ -22,7 +22,7 @@ def make_question_pie(responses, question):
             "values": business_recovery_data_values,
             "labels": business_recovery_data_keys,
             "type": "pie",
-            'marker': {
+             'marker': {
               'colors': [
                 '#005DA6',
 '#FFC52F',
@@ -55,22 +55,20 @@ def make_household_multi(responses, question):
             household_data[key].pop("Percentage")
         if household_data[key].get("Percentage of case"):
             household_data[key].pop("Percentage of case")
-        s = sum(household_data[key].values())
-        s = s if s != 0 else 1
-        household_data[key] = {k: v / s * 100. for k, v in household_data[key].items()}
+        household_data[key] = {k: v / responses["Total Sample"].get(k, 1) * 100 for k, v in household_data[key].items()}
     data_list = []
-    colors = ['#005DA6',
-'#FFC52F',
-'#BAE1FF',
-'#75C2FF',
-'#31A4FF',
-'#00467D',
-'#CBC53E',
-'#0199D6',
-'#6D6E71'] * 5
+    # colors = ['lightslategray',] * 5
     for key in household_data.keys():
         columns, values = zip(*household_data[key].items())
-        data_list.append({"x": columns, "y": values, "type": "bar", "name": key, 'marker': {"color": colors}})
+        data_list.append(
+            {
+                "x": columns,
+                "y": values,
+                "type": "bar",
+                "name": key,
+                #'marker': {"color": colors}
+            }
+        )
     fig = dcc.Graph(
         id="household",
         className="graphbox",
